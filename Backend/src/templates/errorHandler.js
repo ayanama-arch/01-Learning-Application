@@ -17,11 +17,6 @@ const ErrorCodes = {
 
   INTERNAL_SERVER_ERROR: 500,
   SERVICE_UNAVAILABLE: 503,
-
-  // Optional Custom Codes (if needed)
-  VALIDATION_ERROR: 1001,
-  AUTH_TOKEN_EXPIRED: 1002,
-  RATE_LIMIT_EXCEEDED: 1003,
 };
 
 module.exports = { ErrorCodes, ErrorHandler };

@@ -1,5 +1,5 @@
 class ApiResponse {
-  static sucess(
+  static success(
     res,
     data = null,
     message = "success",
