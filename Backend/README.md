@@ -32,9 +32,42 @@
    GET    /api/auth/refresh-token
    POST   /api/auth/reset-password-email
    POST   /api/auth/verify-reset-password/:token
-   GET    /api/auth/profile
    POST   /api/auth/change-password
    POST   /api/auth/logout
+```
+
+## User Profile
+
+```
+PATCH    /api/user/update-profile
+GET    /api/user/profile
+GET    /api/admin/user/all-users
+GET    /api/admin/user/all-students
+GET    /api/admin/user/all-instructors
+```
+
+`Image Upload`
+
+```
+POST    /api/upload/image/single
+POST    /api/upload/image/multiple
+DELETE    /api/upload/image/:public_id
+```
+
+# TODOS
+
+#### Course Management (Admin/Instructor)
+
+```
+GET    /api/courses
+POST   /api/courses
+GET    /api/courses/:id
+PUT    /api/courses/:id
+DELETE /api/courses/:id
+POST   /api/courses/:id/publish
+POST   /api/courses/:id/unpublish
+GET    /api/courses/instructor/:instructorId
+GET    /api/courses/category/:category
 ```
 
 ## 3. File Upload
