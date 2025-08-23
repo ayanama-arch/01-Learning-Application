@@ -95,7 +95,7 @@ const courseSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["draft", "pending_review", "published", "archived"],
+      enum: ["draft", "published", "archived"],
       default: "draft",
     },
     enrollmentCount: {
