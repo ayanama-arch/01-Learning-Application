@@ -13,5 +13,14 @@ const authMiddlewares = [
 ];
 
 router.post("/create", authMiddlewares, CourseController.createCourse);
-router.post("/update", authMiddlewares, CourseController.createCourse);
+router.patch(
+  "/update/:courseId",
+  authMiddlewares,
+  CourseController.updateCourseDetails
+);
+router.patch(
+  "/add/section/:courseId",
+  authMiddlewares,
+  CourseController.addCourseSection
+);
 module.exports = router;

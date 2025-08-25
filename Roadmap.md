@@ -1,6 +1,7 @@
 # Online Learning Platform Development Roadmap
 
 ## Tech Stack Overview
+
 - **Backend**: Node.js with Express.js
 - **Frontend**: Next.js (React)
 - **Database**: MongoDB with Mongoose ODM
@@ -15,6 +16,7 @@
 ### 1.1 Database Schema Design
 
 **User Schema**
+
 - Basic info (name, email, password, role)
 - Profile details (bio, avatar, social links)
 - Subscription status and payment history
@@ -22,6 +24,7 @@
 - Wishlist and favorites
 
 **Course Schema**
+
 - Course metadata (title, description, price, category)
 - Instructor information
 - Course structure (modules/chapters)
@@ -30,12 +33,14 @@
 - Enrollment count and analytics
 
 **Lesson Schema**
+
 - Lesson content (video URL, text, attachments)
 - Duration and order within course
 - Prerequisites and dependencies
 - Quiz/assignment attachments
 
 **Progress Schema**
+
 - User-course-lesson mapping
 - Completion status and timestamps
 - Video watch time tracking
@@ -43,6 +48,7 @@
 - Certificates earned
 
 **Payment Schema**
+
 - Transaction records
 - Subscription management
 - Refund tracking
@@ -50,6 +56,7 @@
 ### 1.2 Complete API Routes List
 
 #### Authentication & User Management
+
 ```
 POST   /api/auth/register
 POST   /api/auth/login
@@ -61,6 +68,7 @@ GET    /api/auth/verify-email/:token
 ```
 
 #### User Profile Management
+
 ```
 GET    /api/users/profile
 PUT    /api/users/profile
@@ -72,7 +80,20 @@ POST   /api/users/wishlist/:courseId
 DELETE /api/users/wishlist/:courseId
 ```
 
+## Courses
+
+```
+> Course Management
+POST   /api/admin/course/create-course
+PATCH  /api/admin/course/:courseId
+DELETE /api/admin/course/:courseId
+POST   /api/admin/course/:courseId/publish
+POST   /api/admin/course/:courseId/unpublish
+GET    /api/admin/course/:courseId
+```
+
 #### Course Management (Admin/Instructor)
+
 ```
 GET    /api/courses
 POST   /api/courses
@@ -86,6 +107,7 @@ GET    /api/courses/category/:category
 ```
 
 #### Lesson Management
+
 ```
 GET    /api/courses/:courseId/lessons
 POST   /api/courses/:courseId/lessons
@@ -97,6 +119,7 @@ DELETE /api/lessons/:id/attachments/:attachmentId
 ```
 
 #### Course Progress Tracking
+
 ```
 GET    /api/progress/:courseId
 POST   /api/progress/:courseId/lessons/:lessonId/start
@@ -107,6 +130,7 @@ POST   /api/progress/:courseId/reset
 ```
 
 #### Enrollment & Payments
+
 ```
 POST   /api/enrollment/:courseId
 GET    /api/enrollment/check/:courseId
@@ -118,6 +142,7 @@ POST   /api/payments/refund/:transactionId
 ```
 
 #### Reviews & Ratings
+
 ```
 GET    /api/courses/:courseId/reviews
 POST   /api/courses/:courseId/reviews
@@ -127,6 +152,7 @@ GET    /api/reviews/user/:userId
 ```
 
 #### Admin Panel APIs
+
 ```
 GET    /api/admin/dashboard/stats
 GET    /api/admin/users
@@ -140,6 +166,7 @@ GET    /api/admin/analytics/courses
 ```
 
 #### Search & Filtering
+
 ```
 GET    /api/search/courses
 GET    /api/categories
@@ -149,6 +176,7 @@ GET    /api/courses/recommendations/:userId
 ```
 
 #### File Upload & Management
+
 ```
 POST   /api/upload/video
 POST   /api/upload/image
@@ -162,6 +190,7 @@ GET    /api/upload/signed-url
 ## Phase 2: Core Backend Implementation Strategy
 
 ### 2.1 Project Setup & Configuration
+
 1. Initialize Node.js project with Express
 2. Set up MongoDB connection with Mongoose
 3. Configure environment variables (.env setup)
@@ -170,6 +199,7 @@ GET    /api/upload/signed-url
 6. Set up logging system (Winston/Morgan)
 
 ### 2.2 Authentication System Implementation
+
 1. JWT token generation and validation
 2. Password hashing with bcrypt
 3. Role-based access control (RBAC)
@@ -178,6 +208,7 @@ GET    /api/upload/signed-url
 6. Session management and refresh tokens
 
 ### 2.3 Database Models Implementation Order
+
 1. User model with authentication fields
 2. Course model with instructor relationships
 3. Lesson model with course relationships
@@ -186,6 +217,7 @@ GET    /api/upload/signed-url
 6. Review and rating models
 
 ### 2.4 Core API Development Sequence
+
 1. **Authentication APIs**: Register, login, password reset
 2. **User Profile APIs**: CRUD operations for user data
 3. **Course Management APIs**: Full CRUD for courses
@@ -198,6 +230,7 @@ GET    /api/upload/signed-url
 10. **Admin Panel APIs**: Management dashboard
 
 ### 2.5 Advanced Features Implementation
+
 1. **Video Streaming**: Implement secure video delivery
 2. **Progress Analytics**: Detailed learning statistics
 3. **Certificate Generation**: PDF generation for completions
@@ -210,6 +243,7 @@ GET    /api/upload/signed-url
 ## Phase 3: Frontend Development Strategy
 
 ### 3.1 Next.js Project Structure
+
 ```
 src/
 ├── components/
@@ -232,12 +266,14 @@ src/
 ```
 
 ### 3.2 State Management Strategy
+
 1. **React Context**: Global user state, theme, notifications
 2. **SWR/React Query**: Server state management and caching
 3. **Local Storage**: User preferences and offline data
 4. **Form State**: React Hook Form for complex forms
 
 ### 3.3 Component Development Order
+
 1. **Layout Components**: Header, footer, sidebar, navigation
 2. **Authentication Components**: Login, register, password reset
 3. **Course Components**: Course cards, course player, lesson viewer
@@ -247,6 +283,7 @@ src/
 7. **Search Components**: Filters, search results, categories
 
 ### 3.4 Page Implementation Sequence
+
 1. **Authentication Pages**: Login, register, email verification
 2. **User Dashboard**: Enrolled courses, progress overview
 3. **Course Discovery**: Browse, search, filter courses
@@ -261,6 +298,7 @@ src/
 ## Phase 4: Advanced Features & Integration
 
 ### 4.1 Course Progress Tracking Implementation
+
 1. **Video Progress**: Track watch time, pause/resume points
 2. **Lesson Completion**: Mark lessons as complete with validation
 3. **Course Progress**: Calculate overall course completion percentage
@@ -269,6 +307,7 @@ src/
 6. **Progress Analytics**: Detailed statistics and learning insights
 
 ### 4.2 Video Player Integration
+
 1. **Secure Video Delivery**: Prevent unauthorized downloads
 2. **Playback Speed Control**: Multiple speed options
 3. **Quality Selection**: Adaptive streaming based on connection
@@ -277,6 +316,7 @@ src/
 6. **Resume Functionality**: Continue from last watched position
 
 ### 4.3 Payment & Enrollment System
+
 1. **Course Pricing**: Support for free and paid courses
 2. **Discount System**: Coupons, promotions, bulk discounts
 3. **Payment Processing**: Secure checkout with Stripe/PayPal
@@ -289,6 +329,7 @@ src/
 ## Phase 5: Testing & Quality Assurance
 
 ### 5.1 Backend Testing Strategy
+
 1. **Unit Tests**: Individual function and middleware testing
 2. **Integration Tests**: API endpoint testing with database
 3. **Security Testing**: Authentication, authorization, input validation
@@ -296,6 +337,7 @@ src/
 5. **Database Testing**: Data integrity and relationship testing
 
 ### 5.2 Frontend Testing Strategy
+
 1. **Component Tests**: Individual component functionality
 2. **Integration Tests**: User flow and component interaction
 3. **E2E Tests**: Complete user journey testing
@@ -307,6 +349,7 @@ src/
 ## Phase 6: Deployment & DevOps
 
 ### 6.1 Backend Deployment
+
 1. **Environment Setup**: Production, staging, development
 2. **Database Migration**: MongoDB Atlas or self-hosted setup
 3. **File Storage**: AWS S3 or Cloudinary configuration
@@ -315,6 +358,7 @@ src/
 6. **Environment Variables**: Secure configuration management
 
 ### 6.2 Frontend Deployment
+
 1. **Build Optimization**: Code splitting and bundling
 2. **CDN Setup**: Fast content delivery
 3. **Performance Optimization**: Image optimization, lazy loading
@@ -323,6 +367,7 @@ src/
 6. **Error Monitoring**: Sentry or similar service
 
 ### 6.3 Monitoring & Maintenance
+
 1. **Server Monitoring**: Uptime and performance monitoring
 2. **Error Tracking**: Application error logging
 3. **Database Monitoring**: Query performance and optimization
@@ -334,18 +379,21 @@ src/
 ## Development Timeline Estimate
 
 **Phase 1-2 (Backend)**: 6-8 weeks
+
 - Week 1-2: Project setup, authentication, user management
 - Week 3-4: Course management, lesson CRUD
 - Week 5-6: Progress tracking, payment integration
 - Week 7-8: Admin APIs, file handling, testing
 
 **Phase 3 (Frontend)**: 6-8 weeks
+
 - Week 9-10: Layout, authentication UI, basic components
 - Week 11-12: Course discovery, course detail pages
 - Week 13-14: Learning interface, video player integration
 - Week 15-16: Admin panel, instructor dashboard, testing
 
 **Phase 4-6 (Advanced Features & Deployment)**: 3-4 weeks
+
 - Week 17-18: Advanced features, optimization
 - Week 19-20: Testing, deployment, monitoring setup
 
